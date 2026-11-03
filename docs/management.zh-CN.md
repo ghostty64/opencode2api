@@ -55,8 +55,7 @@ go build -trimpath -o opencode2api ./cmd/opencode2api
 `sweet`。两个别名列入 `/v1/models`，支持 Chat Completions、Responses 和
 Messages，以及这三种协议的流式输出。真实模型 ID 的原有调用路径保持不变。
 
-- SOTA 固定成员：`deepseek-v4.1-flash`、`glm-5.3`、`grok-4.6`、`kimi-k3`、
-  `qwen3.8-max`，默认按上述顺序。
+- SOTA 固定成员：`grok-4.6`、`kimi-k3`、`qwen3.8-max`，默认按上述顺序。
 - 甜点组包含其余 Go 可用模型，初次以 `glm-5.3-flash` 为首，随后按名称排序。
   新模型追加在末尾；下架或协议不受支持的模型保留在列表，但不参与调用。
 - 每组共享一个当前模型。成功后保持位置；失败切换后，下次从新位置开始。
@@ -87,7 +86,7 @@ Messages，以及这三种协议的流式输出。真实模型 ID 的原有调�
 - `GET /api/rotation`：分组配置、可用状态、暂停期限、切换和尝试记录。
 - `PUT /api/rotation`：提交 `sota` / `sweet` 的 `alias`、完整 `order`，以及
   `first_output_seconds`；别名不得重复或与真实模型 ID 冲突，成员不得跨组。
-- `POST /api/rotation/current`：`{"group":"sota","model":"glm-5.3"}`；立即
+- `POST /api/rotation/current`：`{"group":"sota","model":"grok-4.6"}`；立即
   修改当前模型并解除该模型的临时暂停。
 
 验证：`go test -race ./...`、`go vet ./...`、`for f in webui/js/*.js webui/js/pages/*.js; do node --input-type=module --check < "$f"; done`。

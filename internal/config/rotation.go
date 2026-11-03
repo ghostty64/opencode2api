@@ -9,7 +9,7 @@ import (
 // SOTAModels lists the models of the "sota" rotation group in their default
 // order. That group must hold exactly these models; every other model belongs
 // to the "sweet" group.
-var SOTAModels = []string{"deepseek-v4.1-flash", "glm-5.3", "grok-4.6", "kimi-k3", "qwen3.8-max"}
+var SOTAModels = []string{"grok-4.6", "kimi-k3", "qwen3.8-max"}
 
 // RotationGroup is one model-rotation group: Alias is the model name clients
 // request to use the group, and Order is the failover order of its models.
@@ -78,7 +78,7 @@ func (c RotationConfig) Validate(realModels []string) error {
 			seen[model] = true
 		}
 		if i == 0 && len(g.Order) != len(SOTAModels) {
-			return fmt.Errorf("SOTA 组必须包含指定的五个模型")
+			return fmt.Errorf("SOTA 组必须包含指定的三个模型")
 		}
 	}
 	return nil
