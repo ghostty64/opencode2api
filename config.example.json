@@ -47,7 +47,7 @@
     "enabled": true,
     "listen": "0.0.0.0:8081",
     "username": "hi",
-    "password": "hi",
+    "password": "change-me-please",
     "session_ttl_minutes": 720
   },
   "prefer": "go",
